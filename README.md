@@ -6,22 +6,22 @@ non-cryptographic [Fowler–Noll–Vo hash function][1] for speed.
 
 Usage
 -----
-
-    Dim bloom As New BloomFilter
+```VB
+Dim bloom As New BloomFilter
     
-    Set bloom = New BloomFilter
+Set bloom = New BloomFilter
 
-    ' Add some elements to the filter.
-    bloom.Add ("foo")
-    bloom.Add ("bar")
+' Add some elements to the filter.
+bloom.Add("foo")
+bloom.Add("bar")
 
-    ' Test if an item is in our filter.
-    ' Returns true if an item is probably in the set,
-    ' or false if an item is definitely not in the set.
-    bloom.Test ("foo")
-    bloom.Test ("bar")
-    bloom.Test ("blah")
-
+' Test if an item is in our filter.
+' Returns true if an item is probably in the set,
+' or false if an item is definitely not in the set.
+bloom.Test("foo")
+bloom.Test("bar")
+bloom.Test("blah")
+```
 
 Implementation
 --------------
