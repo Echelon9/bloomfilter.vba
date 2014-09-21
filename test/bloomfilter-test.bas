@@ -83,6 +83,7 @@ Public Function Specs() As SpecSuite
 
         f.Add (1)
 
+        .Expect(f.Test(1)).ToEqual True
         .Expect(f.Test(2)).ToEqual False
 
     End With
