@@ -88,27 +88,26 @@ Public Function Specs() As SpecSuite
 
     End With
 
-'    With Specs.It("size")
-'
-'        Set f = Nothing
-'        Set f = New BloomFilter
-'        Dim i As Integer: i = 0
-'
-'        For i = 0 To 100
-'            f.Add (i)
-'        Next i
-'        ' Note Excel-TDD does not appear to have a 'Within-Delta-Of' test
-'        ' .Expect(f.Size()).ToEqual 97#
-'
-'        For i = 100 To 1000
-'            f.Add (i)
-'        Next i
-'        ' Note Excel-TDD does not appear to have a 'Within-Delta-Of' test
-'        ' .Expect(f.Size()).ToEqual 1007.5
-'
-'    End With
+    With Specs.It("size")
+
+        Set f = Nothing
+        Set f = New BloomFilter
+        Dim i As Integer: i = 0
+
+        For i = 0 To 100
+            f.Add (i)
+        Next i
+        .Expect(f.Size()).ToBeCloseTo 97.014763, 5
+
+        For i = 100 To 1000
+            f.Add (i)
+        Next i
+        .Expect(f.Size()).ToBeCloseTo 1007.54932, 5
+
+    End With
 
     Set f = Nothing
     
     ' InlineRunner.RunSuite Specs
+    ' InlineRunner.RunSuite Specs, ShowFailureDetails:=True, ShowPassed:=True, ShowSuiteDetails:=True
 End Function
