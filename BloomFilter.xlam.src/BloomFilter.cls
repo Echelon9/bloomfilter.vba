@@ -33,7 +33,7 @@ Private Sub Class_Initialize()
     Dim m, k As Integer
     
     '==== Default constructor values
-    m = 32 * 256    ' Number of bits. Must be a multiple of 32.
+    m = 32 * 1000   ' Number of bits. Must be a multiple of 32.
     k = 4           ' Number of hashing functions.
     '====
     
@@ -114,7 +114,7 @@ Public Property Get Size() As Double
     
     On Error GoTo Size_Err
     
-    Dim bits As Variant
+    Dim bits As Long
     Dim i As Integer
     
     bits = 0
@@ -171,15 +171,28 @@ Private Property Get Locations(ByVal v As String) As Variant
 End Property
 
 ' http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel
-Private Function popcnt(ByVal v As Long) As Variant
+Private Function popcnt_1(ByVal v As Long, Optional sign As Boolean = False) As Integer
     ' Note: There is no Subtraction assignment (-=) operator in VBA by default
     
     v = v - (shr(v, 1) And &H55555555)
     v = (v And &H33333333) + (shr(v, 2) And &H33333333)
-    v = shr((v + shr(v, 4) And &HF0F0F0F) * (&H1010101), 24)
-    
-    popcnt = v
+    v = (v + shr(v, 4) And &HF0F0F0F)
+    v = v + shr(v, 8)
+    v = v + shr(v, 16)
+    v = v + shr(v, 32)
+    v = v And &H7F
+    If sign Then v = v + CLng(1)
+
+    popcnt_1 = v
 End Function
+    
+' http://www.vbforums.com/showthread.php?745693-Count-Bits-Extensions
+' Note how the 'sign' argument is determined, and how overflows
+' are inhibited by the use of a mask.
+Private Function popcnt(num As Long) As Integer
+    popcnt = popcnt_1(CLng(num And &H7FFFFFFF), num < 0)
+End Function
+
 
 ' http://www.excely.com/excel-vba/bit-shifting-function.shtml
 Private Function shr(ByVal Value As Long, ByVal Shift As Byte) As Long

@@ -97,12 +97,12 @@ Public Function Specs() As SpecSuite
         For i = 0 To 100
             f.Add (i)
         Next i
-        .Expect(f.Size()).ToBeCloseTo 97.014763, 5
+        .Expect(f.Size()).ToBeCloseTo 99.61766, 5
 
         For i = 100 To 1000
             f.Add (i)
         Next i
-        .Expect(f.Size()).ToBeCloseTo 1007.54932, 5
+        .Expect(f.Size()).ToBeCloseTo 943.51438, 5
 
     End With
 
