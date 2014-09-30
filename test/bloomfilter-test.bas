@@ -51,6 +51,7 @@ Public Function Specs() As SpecSuite
     
         Set f = Nothing
         Set f = New BloomFilter
+        Dim n3 As String
 
         ' Will need to confirm the data type in VBA
         n1 = "\u0100"
