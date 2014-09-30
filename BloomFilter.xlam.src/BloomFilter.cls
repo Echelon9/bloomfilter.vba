@@ -112,8 +112,6 @@ End Function
 ' Estimated cardinality.
 Public Property Get Size() As Double
     
-    On Error GoTo Size_Err
-    
     Dim bits As Long
     Dim i As Integer
     
@@ -125,12 +123,6 @@ Public Property Get Size() As Double
     Next i
     
     Size = -pM * Log(1 - bits / pM) / pK
-    
-    Exit Property
-    
-Size_Err:
-    MsgBox "Warning: BloomFilter.Size() not fully implemented"
-    Size = -1
     
 End Property
 
