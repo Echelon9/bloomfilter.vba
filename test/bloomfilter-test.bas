@@ -51,6 +51,7 @@ Public Function Specs() As SpecSuite
     
         Set f = Nothing
         Set f = New BloomFilter
+        Dim n3 As String
 
         ' Will need to confirm the data type in VBA
         n1 = "\u0100"
@@ -97,12 +98,12 @@ Public Function Specs() As SpecSuite
         For i = 0 To 100
             f.Add (i)
         Next i
-        .Expect(f.Size()).ToBeCloseTo 97.014763, 5
+        .Expect(f.Size()).ToBeCloseTo 99.61766, 5
 
         For i = 100 To 1000
             f.Add (i)
         Next i
-        .Expect(f.Size()).ToBeCloseTo 1007.54932, 5
+        .Expect(f.Size()).ToBeCloseTo 943.51438, 5
 
     End With
 
