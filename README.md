@@ -43,4 +43,4 @@ optimisation.
 
 [1]: http://isthe.com/chongo/tech/comp/fnv/
 [2]: https://dx.doi.org/10.1145%2F362686.362692
-[2]: http://willwhim.wordpress.com/2011/09/03/producing-n-hash-functions-by-hashing-only-once/
+[3]: http://willwhim.wordpress.com/2011/09/03/producing-n-hash-functions-by-hashing-only-once/
