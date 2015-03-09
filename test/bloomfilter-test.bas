@@ -107,6 +107,28 @@ Public Function Specs() As SpecSuite
 
     End With
 
+    With Specs.It("FNV-1a hash known collisions")
+    
+        Set f = Nothing
+        Set f = New BloomFilter
+
+        ' These are known collisions with FNV-1a hash.
+        ' i.e. this unit test is algorithm-specific, not Bloom filter-specific.
+        ' It will fail if the underlying hash function is changed.
+        '
+        ' c.f. https://programmers.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed/145633#145633
+        f.Add ("costarring")
+        f.Add ("declinate")
+        f.Add ("altarage")
+        f.Add ("altarages")
+
+        .Expect(f.Test("liquid")).ToEqual True
+        .Expect(f.Test("macallums")).ToEqual True
+        .Expect(f.Test("zinke")).ToEqual True
+        .Expect(f.Test("zinkes")).ToEqual True
+
+    End With
+
     Set f = Nothing
     
     ' InlineRunner.RunSuite Specs
